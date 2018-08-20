@@ -5,8 +5,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_50.root\
   -o ../results/mc_dis_50.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00000149243 width'\
-     'n/^Background__/scale 0.00000187188 width'\
+     'n/^Signal__/scale 0.00000149146 width'\
+     'n/^Background__/scale 0.00000249992 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -15,8 +15,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_100.root\
   -o ../results/mc_dis_100.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00000127714 width'\
-     'n/^Background__/scale 0.00000191122 width'\
+     'n/^Signal__/scale 0.00000127766 width'\
+     'n/^Background__/scale 0.00000254848 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -25,8 +25,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_150.root\
   -o ../results/mc_dis_150.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00000290613 width'\
-     'n/^Background__/scale 0.00000824313 width'\
+     'n/^Signal__/scale 0.00000290034 width'\
+     'n/^Background__/scale 0.00001099807 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -35,8 +35,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_200.root\
   -o ../results/mc_dis_200.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00000519726 width'\
-     'n/^Background__/scale 0.00003243593 width'\
+     'n/^Signal__/scale 0.00000517668 width'\
+     'n/^Background__/scale 0.00004328067 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -56,7 +56,7 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_300.root\
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
      'n/^Signal__/scale 0.00001390395 width'\
-     'n/^Background__/scale 0.00017882689 width'\
+     'n/^Background__/scale 0.00024201355 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -65,8 +65,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_350.root\
   -o ../results/mc_dis_350.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00002122511 width'\
-     'n/^Background__/scale 0.00036630036 width'\
+     'n/^Signal__/scale 0.0000211479 width'\
+     'n/^Background__/scale 0.00048638132 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -75,8 +75,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_400.root\
   -o ../results/mc_dis_400.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.0000314495 width'\
-     'n/^Background__/scale 0.00072254335 width'\
+     'n/^Signal__/scale 0.0000315527 width'\
+     'n/^Background__/scale 0.00096525096 width'\
   -g 'leg tr'\
   --colors=600 635
 
@@ -85,8 +85,8 @@ hed /msu/data/t3work9/voetberg/vari_dist/mc_dis_400p.root\
   -o ../results/mc_dis_400p.pdf \
   -e 's/^(Signal|Background)__//' \
      'nl/^(Signal|Background).*/\1/' \
-     'n/^Signal__/scale 0.00001130186 width'\
-     'n/^Background__/scale 0.00036101083 width'\
+     'n/^Signal__/scale 0.00001129458 width'\
+     'n/^Background__/scale 0.00048332527 width'\
   -g 'leg tr'\
   --colors=600 635
 
