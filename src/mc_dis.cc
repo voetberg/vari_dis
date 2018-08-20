@@ -24,10 +24,14 @@ int main(){
   TChain chain_b("t3"); 
 
   chain_s.Add("$TMPDIR/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_100.root",0); 
-  chain_b.Add("$TMPDIR/born6.root",0); 
+  //chain_s.Add("/msu/data/t3work4/luisonig/H1jets_ggf/NTuplesFiles/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_100.root",0); 
+  //chain_b.Add("$TMPDIR/born6.root",0); 
   chain_b.Add("$TMPDIR/born7.root",0); 
   chain_b.Add("$TMPDIR/born8.root",0); 
   chain_b.Add("$TMPDIR/born9.root",0); 
+  //chain_b.Add("/msu/data/t3work4/gosam_diphoton_jet/born/born9.root",0); 
+  cout<<"Read in files"<<endl; 
+  
   //===============================================                            
   constexpr size_t max = 10;                                                    
   Float_t px_s[max], py_s[max], pz_s[max], E_s[max];                            
@@ -73,50 +77,58 @@ int main(){
   for (int i=0; i<9; ++i){
     TString outname = "mc_dis_" + num[i] + ".root"; 
     TFile* out = TFile::Open(outname, "RECREATE"); 
-    
+    cout<<"Writing "<<outname<<"....."<<endl; 
+
     //===============================================                             
-    //Ouputs                                 
+    //Ouputs
+    int nbins = 100.;
+    if (i==6){
+      nbins = 60; 
+    }
+    if (i==8 or i==7){
+      nbins = 40;
+    }    
     //Signal
-    TH1D* h_s_s = new TH1D("Signal__s_" + num[i], "#sqrt{s}", 100,0.,2500.);    
-    TH1D* h_yydr_s = new TH1D("Signal__yydr_" + num[i], "Diphoton #DeltaR",100, 0, 8);
-    TH1D* h_y1dr_s = new TH1D("Signal__y1dr_"+ num[i], "#gamma_{1} #DeltaR",100,1.5, 7);
-    TH1D* h_y2dr_s = new TH1D("Signal__y2dr_" + num[i], "#gamma_{2} #DeltaR", 100, 0, 7);
-    TH1D* h_ptratio_s = new TH1D("Signal__ptratio_"+num[i], "#gamma_{1} / #gamma_{2}", 100, 1, 2.5);
-    TH1D* h_y1y_s = new TH1D("Signal__y1y_"+num[i], "#gamma_{1} Rapidity", 100, 0, 2.5);
-    TH1D* h_y2y_s = new TH1D("Signal__y2y_"+num[i],"#gamma_{2} Rapidity", 100, 0, 2.5);
-    TH1D* h_jety_s = new TH1D("Signal__jety_"+num[i],"Leading Jet Rapidity", 100,0, 4.5);
-    TH1D* h_yydy_s = new TH1D("Signal__yydy_"+num[i],"Diphoton #DeltaY", 100, 0, 2.6);
-    TH1D* h_y1E_s = new TH1D("Signal__y1E_"+num[i], "#gamma_{1} Energy", 100, 0, 1200);
-    TH1D* h_y2E_s = new TH1D("Signal__y2E_"+num[i], "#gamma_{2} Energy", 100, 0, 600);
-    TH1D* h_yyE_s = new TH1D("Signal__yyE_"+num[i], "Diphoton Energy", 100, 0, 1750);
-    TH1D* h_jetE_s = new TH1D("Signal__jetE_"+num[i], "Leading Jet Energy", 100, 0, 2500);
-    TH1D* h_y1pt_s = new TH1D("Signal__y1pt_"+num[i], "#gamma_{1} p_{T}", 100, 0, 600);
-    TH1D* h_y2pt_s = new TH1D("Signal__y2pt_"+num[i], "#gamma_{2} p_{T}", 100, 0, 250);
-    TH1D* h_yypt_s = new TH1D("Signal__yypt_"+num[i], "Diphoton p_{T}", 100, 0, 700);
+    TH1D* h_s_s = new TH1D("Signal__s_" + num[i], "#sqrt{s}", nbins,0.,2500.);    
+    TH1D* h_yydr_s = new TH1D("Signal__yydr_" + num[i], "Diphoton #DeltaR",nbins, 0, 8);
+    TH1D* h_y1dr_s = new TH1D("Signal__y1dr_"+ num[i], "#gamma_{1} #DeltaR",nbins,1.5, 7);
+    TH1D* h_y2dr_s = new TH1D("Signal__y2dr_" + num[i], "#gamma_{2} #DeltaR", nbins, 0, 7);
+    TH1D* h_ptratio_s = new TH1D("Signal__ptratio_"+num[i], "p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 1, 20);
+    TH1D* h_y1y_s = new TH1D("Signal__y1y_"+num[i], "#gamma_{1} Rapidity", nbins, 0, 2.5);
+    TH1D* h_y2y_s = new TH1D("Signal__y2y_"+num[i],"#gamma_{2} Rapidity", nbins, 0, 2.5);
+    TH1D* h_jety_s = new TH1D("Signal__jety_"+num[i],"Leading Jet Rapidity", nbins,0, 4.5);
+    TH1D* h_yydy_s = new TH1D("Signal__yydy_"+num[i],"Diphoton #DeltaY", nbins, 0, 2.6);
+    TH1D* h_y1E_s = new TH1D("Signal__y1E_"+num[i], "#gamma_{1} Energy", nbins, 0, 1200);
+    TH1D* h_y2E_s = new TH1D("Signal__y2E_"+num[i], "#gamma_{2} Energy", nbins, 0, 600);
+    TH1D* h_yyE_s = new TH1D("Signal__yyE_"+num[i], "Diphoton Energy", nbins, 0, 1750);
+    TH1D* h_jetE_s = new TH1D("Signal__jetE_"+num[i], "Leading Jet Energy", nbins, 0, 2500);
+    TH1D* h_y1pt_s = new TH1D("Signal__y1pt_"+num[i], "#gamma_{1} p_{T}", nbins, 0, 600);
+    TH1D* h_y2pt_s = new TH1D("Signal__y2pt_"+num[i], "#gamma_{2} p_{T}", nbins, 0, 250);
+    TH1D* h_yypt_s = new TH1D("Signal__yypt_"+num[i], "Diphoton p_{T}", nbins, 0, 700);
                                                                                 
-    TH1D* h_yyy_s = new TH1D("Signal__yyy_"+num[i], "Diphoton Rapidity", 100, 0, 3);
-    TH1D* h_costhet_s = new TH1D("Signal__costhet_"+num[i], "|cos #theta*|", 100,0, 1.2);
+    TH1D* h_yyy_s = new TH1D("Signal__yyy_"+num[i], "Diphoton Rapidity", nbins, 0, 3);
+    TH1D* h_costhet_s = new TH1D("Signal__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);
                                                                                 
     //Sideband                                                                  
-    TH1D* h_s_b = new TH1D("Background__s_" + num[i], "#sqrt{s}", 100,0.,2500.);
-    TH1D* h_yydr_b = new TH1D("Background__yydr_" + num[i], "Diphoton #DeltaR",100, 0, 8);
-    TH1D* h_y1dr_b = new TH1D("Background__y1dr_"+ num[i], "#gamma_{1} #DeltaR",100,1.5, 7);
-    TH1D* h_y2dr_b = new TH1D("Background__y2dr_" + num[i], "#gamma_{2} #DeltaR", 100, 0, 7);
-    TH1D* h_ptratio_b = new TH1D("Background__ptratio_"+num[i], "#gamma_{1} / #gamma_{2}", 100, 1, 2.5);
-    TH1D* h_y1y_b = new TH1D("Background__y1y_"+num[i], "#gamma_{1} Rapidity", 100, 0, 2.5);
-    TH1D* h_y2y_b = new TH1D("Background__y2y_"+num[i],"#gamma_{2} Rapidity", 100, 0, 2.5);
-    TH1D* h_jety_b = new TH1D("Background__jety_"+num[i],"Leading Jet Rapidity", 100,0, 4.5);
-    TH1D* h_yydy_b = new TH1D("Background__yydy_"+num[i],"Diphoton #DeltaY", 100, 0, 2.6);
-    TH1D* h_y1E_b = new TH1D("Background__y1E_"+num[i], "#gamma_{1} Energy", 100, 0, 1200);
-    TH1D* h_y2E_b = new TH1D("Background__y2E_"+num[i], "#gamma_{2} Energy", 100, 0, 600);
-    TH1D* h_yyE_b = new TH1D("Background__yyE_"+num[i], "Diphoton Energy", 100, 0, 1750);
-    TH1D* h_jetE_b = new TH1D("Background__jetE_"+num[i], "Leading Jet Energy", 100, 0, 2500);
-    TH1D* h_y1pt_b = new TH1D("Background__y1pt_"+num[i], "#gamma_{1} p_{T}", 100, 0, 600);
-    TH1D* h_y2pt_b = new TH1D("Background__y2pt_"+num[i], "#gamma_{2} p_{T}", 100, 0, 250);
-    TH1D* h_yypt_b = new TH1D("Background__yypt_"+num[i], "Diphoton p_{T}", 100, 0, 700);
+    TH1D* h_s_b = new TH1D("Background__s_" + num[i], "#sqrt{s}", nbins,0.,2500.);
+    TH1D* h_yydr_b = new TH1D("Background__yydr_" + num[i], "Diphoton #DeltaR",nbins, 0, 8);
+    TH1D* h_y1dr_b = new TH1D("Background__y1dr_"+ num[i], "#gamma_{1} #DeltaR",nbins,1.5, 7);
+    TH1D* h_y2dr_b = new TH1D("Background__y2dr_" + num[i], "#gamma_{2} #DeltaR", nbins, 0, 7);
+    TH1D* h_ptratio_b = new TH1D("Background__ptratio_"+num[i], "p_{T}^{#gamma_{1}} /p_{T}^{#gamma_{2}}", nbins, 1, 20);
+    TH1D* h_y1y_b = new TH1D("Background__y1y_"+num[i], "#gamma_{1} Rapidity", nbins, 0, 2.5);
+    TH1D* h_y2y_b = new TH1D("Background__y2y_"+num[i],"#gamma_{2} Rapidity", nbins, 0, 2.5);
+    TH1D* h_jety_b = new TH1D("Background__jety_"+num[i],"Leading Jet Rapidity", nbins,0, 4.5);
+    TH1D* h_yydy_b = new TH1D("Background__yydy_"+num[i],"Diphoton #DeltaY", nbins, 0, 2.6);
+    TH1D* h_y1E_b = new TH1D("Background__y1E_"+num[i], "#gamma_{1} Energy", nbins, 0, 1200);
+    TH1D* h_y2E_b = new TH1D("Background__y2E_"+num[i], "#gamma_{2} Energy", nbins, 0, 600);
+    TH1D* h_yyE_b = new TH1D("Background__yyE_"+num[i], "Diphoton Energy", nbins, 0, 1750);
+    TH1D* h_jetE_b = new TH1D("Background__jetE_"+num[i], "Leading Jet Energy", nbins, 0, 2500);
+    TH1D* h_y1pt_b = new TH1D("Background__y1pt_"+num[i], "#gamma_{1} p_{T}", nbins, 0, 600);
+    TH1D* h_y2pt_b = new TH1D("Background__y2pt_"+num[i], "#gamma_{2} p_{T}", nbins, 0, 250);
+    TH1D* h_yypt_b = new TH1D("Background__yypt_"+num[i], "Diphoton p_{T}", nbins, 0, 700);
                                                                                 
-    TH1D* h_yyy_b = new TH1D("Background__yyy_"+num[i], "Diphoton Rapidity", 100, 0, 3);
-    TH1D* h_costhet_b = new TH1D("Background__costhet_"+num[i], "|cos #theta*|", 100,0, 1.2);
+    TH1D* h_yyy_b = new TH1D("Background__yyy_"+num[i], "Diphoton Rapidity", nbins, 0, 3);
+    TH1D* h_costhet_b = new TH1D("Background__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);
                                                                 
     //==============================================                              
     const Long64_t entries_s = chain_s.GetEntries();                             
@@ -305,7 +317,7 @@ int main(){
         n_bg+=1; 
 
         s = (abs((yy+jet).M()));                                               
-        yydr = (abs(yy.DeltaR(jet)));                                          
+        yydr = (abs(y1.DeltaR(y2)));                                          
         y1dr = (abs(y1.DeltaR(jet)));                                        
         y2dr = (abs(y2.DeltaR(jet)));                                        
         ptratio = (abs(y1.Pt())/abs(y2.Pt()));                          
