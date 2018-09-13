@@ -70,11 +70,11 @@ int main(){
     //======================================
     //Each histogram
     int nbins = 100.; 
-    if (i==6){
-      nbins = 60;
+    if (i==6 or i==5){
+      nbins = 40;
     } 
     if (i==7 or i==8){
-      nbins = 40; 
+      nbins = 20; 
     }
 
     //Signal Region
@@ -99,29 +99,49 @@ int main(){
     TH1D* h_costhet_s = new TH1D("Signal__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);  
 
     //Sideband
-    TH1D* h_s_b = new TH1D("Background__s_" + num[i], "#sqrt{s}", nbins,0.,2500.); 
-    TH1D* h_yydr_b = new TH1D("Background__yydr_" + num[i], "Diphoton #DeltaR",nbins, 0, 8); 
-    TH1D* h_y1dr_b = new TH1D("Background__y1dr_"+ num[i], "#gamma_{1} #DeltaR",nbins,1.5, 7); 
-    TH1D* h_y2dr_b = new TH1D("Background__y2dr_" + num[i], "#gamma_{2} #DeltaR", nbins, 0, 7); 
-    TH1D* h_ptratio_b = new TH1D("Background__ptratio_"+num[i], "p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 1, 20); 
-    TH1D* h_y1y_b = new TH1D("Background__y1y_"+num[i], "#gamma_{1} Rapidity", nbins, 0, 2.5); 
-    TH1D* h_y2y_b = new TH1D("Background__y2y_"+num[i],"#gamma_{2} Rapidity", nbins, 0, 2.5); 
-    TH1D* h_jety_b = new TH1D("Background__jety_"+num[i],"Leading Jet Rapidity", nbins,0, 4.5); 
-    TH1D* h_yydy_b = new TH1D("Background__yydy_"+num[i],"Diphoton #DeltaY", nbins, 0, 2.6); 
-    TH1D* h_y1E_b = new TH1D("Background__y1E_"+num[i], "#gamma_{1} Energy", nbins, 0, 1200); 
-    TH1D* h_y2E_b = new TH1D("Background__y2E_"+num[i], "#gamma_{2} Energy", nbins, 0, 600);
-    TH1D* h_yyE_b = new TH1D("Background__yyE_"+num[i], "Diphoton Energy", nbins, 0, 1750); 
-    TH1D* h_jetE_b = new TH1D("Background__jetE_"+num[i], "Leading Jet Energy", nbins, 0, 2500); 
-    TH1D* h_y1pt_b = new TH1D("Background__y1pt_"+num[i], "#gamma_{1} p_{T}", nbins, 0, 600); 
-    TH1D* h_y2pt_b = new TH1D("Background__y2pt_"+num[i], "#gamma_{2} p_{T}", nbins, 0, 250);
-    TH1D* h_yypt_b = new TH1D("Background__yypt_"+num[i], "Diphoton p_{T}", nbins, 0, 700); 
+    TH1D* h_s_bl = new TH1D("Left__s_" + num[i], "#sqrt{s}", nbins,0.,2500.); 
+    TH1D* h_yydr_bl = new TH1D("Left__yydr_" + num[i], "Diphoton #DeltaR",nbins, 0, 8); 
+    TH1D* h_y1dr_bl = new TH1D("Left__y1dr_"+ num[i], "#gamma_{1} #DeltaR",nbins,1.5, 7); 
+    TH1D* h_y2dr_bl = new TH1D("Left__y2dr_" + num[i], "#gamma_{2} #DeltaR", nbins, 0, 7); 
+    TH1D* h_ptratio_bl = new TH1D("Left__ptratio_"+num[i], "p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 1, 20); 
+    TH1D* h_y1y_bl = new TH1D("Left__y1y_"+num[i], "#gamma_{1} Rapidity", nbins, 0, 2.5); 
+    TH1D* h_y2y_bl = new TH1D("Left__y2y_"+num[i],"#gamma_{2} Rapidity", nbins, 0, 2.5); 
+    TH1D* h_jety_bl = new TH1D("Left__jety_"+num[i],"Leading Jet Rapidity", nbins,0, 4.5); 
+    TH1D* h_yydy_bl = new TH1D("Left__yydy_"+num[i],"Diphoton #DeltaY", nbins, 0, 2.6); 
+    TH1D* h_y1E_bl = new TH1D("Left__y1E_"+num[i], "#gamma_{1} Energy", nbins, 0, 1200); 
+    TH1D* h_y2E_bl = new TH1D("Left__y2E_"+num[i], "#gamma_{2} Energy", nbins, 0, 600);
+    TH1D* h_yyE_bl = new TH1D("Left__yyE_"+num[i], "Diphoton Energy", nbins, 0, 1750); 
+    TH1D* h_jetE_bl = new TH1D("Left__jetE_"+num[i], "Leading Jet Energy", nbins, 0, 2500); 
+    TH1D* h_y1pt_bl = new TH1D("Left__y1pt_"+num[i], "#gamma_{1} p_{T}", nbins, 0, 600); 
+    TH1D* h_y2pt_bl = new TH1D("Left__y2pt_"+num[i], "#gamma_{2} p_{T}", nbins, 0, 250);
+    TH1D* h_yypt_bl = new TH1D("Left__yypt_"+num[i], "Diphoton p_{T}", nbins, 0, 700); 
     
-    TH1D* h_yyy_b = new TH1D("Background__yyy_"+num[i], "Diphoton Rapidity", nbins, 0, 3); 
-    TH1D* h_costhet_b = new TH1D("Background__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);  
+    TH1D* h_yyy_bl = new TH1D("Left__yyy_"+num[i], "Diphoton Rapidity", nbins, 0, 3); 
+    TH1D* h_costhet_bl = new TH1D("Left__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);  
 
+    TH1D* h_s_br = new TH1D("Right__s_" + num[i], "#sqrt{s}", nbins,0.,2500.); 
+    TH1D* h_yydr_br = new TH1D("Right__yydr_" + num[i], "Diphoton #DeltaR",nbins, 0, 8); 
+    TH1D* h_y1dr_br = new TH1D("Right__y1dr_"+ num[i], "#gamma_{1} #DeltaR",nbins,1.5, 7); 
+    TH1D* h_y2dr_br = new TH1D("Right__y2dr_" + num[i], "#gamma_{2} #DeltaR", nbins, 0, 7); 
+    TH1D* h_ptratio_br = new TH1D("Right__ptratio_"+num[i], "p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 1, 20); 
+    TH1D* h_y1y_br = new TH1D("Right__y1y_"+num[i], "#gamma_{1} Rapidity", nbins, 0, 2.5); 
+    TH1D* h_y2y_br = new TH1D("Right__y2y_"+num[i],"#gamma_{2} Rapidity", nbins, 0, 2.5); 
+    TH1D* h_jety_br = new TH1D("Right__jety_"+num[i],"Leading Jet Rapidity", nbins,0, 4.5); 
+    TH1D* h_yydy_br = new TH1D("Right__yydy_"+num[i],"Diphoton #DeltaY", nbins, 0, 2.6); 
+    TH1D* h_y1E_br = new TH1D("Right__y1E_"+num[i], "#gamma_{1} Energy", nbins, 0, 1200); 
+    TH1D* h_y2E_br = new TH1D("Right__y2E_"+num[i], "#gamma_{2} Energy", nbins, 0, 600);
+    TH1D* h_yyE_br = new TH1D("Right__yyE_"+num[i], "Diphoton Energy", nbins, 0, 1750); 
+    TH1D* h_jetE_br = new TH1D("Right__jetE_"+num[i], "Leading Jet Energy", nbins, 0, 2500); 
+    TH1D* h_y1pt_br = new TH1D("Right__y1pt_"+num[i], "#gamma_{1} p_{T}", nbins, 0, 600); 
+    TH1D* h_y2pt_br = new TH1D("Right__y2pt_"+num[i], "#gamma_{2} p_{T}", nbins, 0, 250);
+    TH1D* h_yypt_br = new TH1D("Right__yypt_"+num[i], "Diphoton p_{T}", nbins, 0, 700); 
+    
+    TH1D* h_yyy_br = new TH1D("Right__yyy_"+num[i], "Diphoton Rapidity", nbins, 0, 3); 
+    TH1D* h_costhet_br = new TH1D("Right__costhet_"+num[i], "|cos #theta*|", nbins,0, 1.2);  
     //====================================
     int n_sig = 0; 
-    int n_bg = 0; 
+    int n_bg_r = 0; 
+    int n_bg_l = 0; 
     //=====================================
     //Go through each event
     const Long64_t entries = chain.GetEntries(); 
@@ -168,6 +188,7 @@ int main(){
       select &= (y1.Pt()>.35*yy.M());                                
       select &= (y2.Pt()>.25*yy.M());                                
       //Delta R                                                                    
+      select &= (y1.DeltaR(jet)>.4);                                       
       select &= (y2.DeltaR(jet)>.4);                                       
       //Jet Cuts
       for (int i=0; i<jet_n; ++i){      
@@ -213,6 +234,9 @@ int main(){
 
         //Make sig and sideband cut
         bool sig = ((yy.M()>121.)&&(yy.M()<129.)); 
+        bool left = ((yy.M()>105.)&&(yy.M()<121.)); 
+        bool right = ((yy.M()>129.)&&(yy.M()<160.)); 
+
         if (sig){
           //Fill signal hist
           h_s_s->Fill(s); 
@@ -239,38 +263,67 @@ int main(){
         
           n_sig+=1; 
         }
-        else{
+
+        if (left){
           //Fill sideband hist
-          h_s_b->Fill(s); 
-          h_yydr_b->Fill(yydr); 
-          h_y1dr_b->Fill(y1dr); 
-          h_y2dr_b->Fill(y2dr); 
-          h_ptratio_b->Fill(ptratio); 
-          h_y1y_b->Fill(y1y); 
-          h_y2y_b->Fill(y2y); 
-          h_jety_b->Fill(jety); 
-          h_yydy_b->Fill(yydy); 
+          h_s_bl->Fill(s); 
+          h_yydr_bl->Fill(yydr); 
+          h_y1dr_bl->Fill(y1dr); 
+          h_y2dr_bl->Fill(y2dr); 
+          h_ptratio_bl->Fill(ptratio); 
+          h_y1y_bl->Fill(y1y); 
+          h_y2y_bl->Fill(y2y); 
+          h_jety_bl->Fill(jety); 
+          h_yydy_bl->Fill(yydy); 
 
-          h_yyE_b->Fill(yyE); 
-          h_y1E_b->Fill(y1E); 
-          h_y2E_b->Fill(y2E); 
-          h_jetE_b->Fill(jetE);
+          h_yyE_bl->Fill(yyE); 
+          h_y1E_bl->Fill(y1E); 
+          h_y2E_bl->Fill(y2E); 
+          h_jetE_bl->Fill(jetE);
 
-          h_yypt_b->Fill(yypt);  
-          h_y1pt_b->Fill(y1pt);  
-          h_y2pt_b->Fill(y2pt); 
+          h_yypt_bl->Fill(yypt);  
+          h_y1pt_bl->Fill(y1pt);  
+          h_y2pt_bl->Fill(y2pt); 
           
-          h_yyy_b->Fill(yyy); 
-          h_costhet_b->Fill(costhet); 
+          h_yyy_bl->Fill(yyy); 
+          h_costhet_bl->Fill(costhet); 
         
-          n_bg+=1; 
+          n_bg_l+=1; 
+        }
+
+        if (right){
+          //Fill sideband hist
+          h_s_br->Fill(s); 
+          h_yydr_br->Fill(yydr); 
+          h_y1dr_br->Fill(y1dr); 
+          h_y2dr_br->Fill(y2dr); 
+          h_ptratio_br->Fill(ptratio); 
+          h_y1y_br->Fill(y1y); 
+          h_y2y_br->Fill(y2y); 
+          h_jety_br->Fill(jety); 
+          h_yydy_br->Fill(yydy); 
+
+          h_yyE_br->Fill(yyE); 
+          h_y1E_br->Fill(y1E); 
+          h_y2E_br->Fill(y2E); 
+          h_jetE_br->Fill(jetE);
+
+          h_yypt_br->Fill(yypt);  
+          h_y1pt_br->Fill(y1pt);  
+          h_y2pt_br->Fill(y2pt); 
+          
+          h_yyy_br->Fill(yyy); 
+          h_costhet_br->Fill(costhet); 
+        
+          n_bg_r+=1; 
         }   
       }
     }
     
     cout<<"Wrote "<<out->GetName()<<endl; 
     cout<<"Signal Count "<<n_sig<<endl; 
-    cout<<"Bkground Count "<<n_bg<<endl;
+    cout<<"Right Bkground Count "<<n_bg_r<<endl;
+    cout<<"Left Bkground Count "<<n_bg_l<<endl;
     cout<<""<<endl; 
 
     out->Write(); 

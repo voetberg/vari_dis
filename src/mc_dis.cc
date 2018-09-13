@@ -82,11 +82,11 @@ int main(){
     //===============================================                             
     //Ouputs
     int nbins = 100.;
-    if (i==6){
-      nbins = 60; 
+    if (i==6 or i==5){
+      nbins = 40; 
     }
     if (i==8 or i==7){
-      nbins = 40;
+      nbins = 20;
     }    
     //Signal
     TH1D* h_s_s = new TH1D("Signal__s_" + num[i], "#sqrt{s}", nbins,0.,2500.);    
