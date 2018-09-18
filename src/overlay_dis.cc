@@ -280,9 +280,7 @@ int main(){
         }
       }
       else{
-        cout<<"No Jet In Event "<<k<<endl; 
-        jets.SetPtEtaPhiM(0,0,0,0);
-        t_jet.emplace_back(jets); 
+        continue; 
       }
     
       //Sorting by pT
