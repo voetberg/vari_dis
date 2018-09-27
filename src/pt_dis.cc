@@ -93,94 +93,94 @@ int main(){
   
   //MC
   TH1D* h_ptratio_s_mc[9]={
-     new TH1D("Signal__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-     new TH1D("Signal__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-     new TH1D("Signal__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-     new TH1D("Signal__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+     new TH1D("Signal__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+     new TH1D("Signal__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+     new TH1D("Signal__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+     new TH1D("Signal__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   }; 
   TH1D* h_ptratio_bl_mc[9] = {
-    new TH1D("Left__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Left__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Left__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Left__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+    new TH1D("Left__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Left__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Left__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Left__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   };
   TH1D* h_ptratio_br_mc[9] = {
-    new TH1D("Right__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Right__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Right__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Right__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+    new TH1D("Right__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Right__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Right__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Right__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   }; 
   TH1D* h_ptratio_bg_mc[9] = {
-    new TH1D("Bckground__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Bckground__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Bckground__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Bckground__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20), 
+    new TH1D("Bckground__mc__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__mc__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__mc__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__mc__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__mc__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__mc__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Bckground__mc__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Bckground__mc__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Bckground__mc__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20), 
   };
 
   //Data   
   TH1D* h_ptratio_s_data[9]={
-     new TH1D("Signal__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-     new TH1D("Signal__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-     new TH1D("Signal__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-     new TH1D("Signal__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-     new TH1D("Signal__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+     new TH1D("Signal__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+     new TH1D("Signal__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+     new TH1D("Signal__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+     new TH1D("Signal__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+     new TH1D("Signal__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   };
   TH1D* h_ptratio_bl_data[9] = {
-    new TH1D("Left__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Left__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Left__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Left__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Left__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+    new TH1D("Left__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Left__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Left__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Left__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Left__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   };
   TH1D* h_ptratio_br_data[9] = {
-    new TH1D("Right__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Right__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Right__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Right__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Right__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20)
+    new TH1D("Right__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Right__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Right__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Right__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Right__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20)
   }; 
   TH1D* h_ptratio_bg_data[9] = {
-    new TH1D("Bckground__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 10, 20),
-    new TH1D("Bckground__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Bckground__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 10, 20),
-    new TH1D("Bckground__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20),
-    new TH1D("Bckground__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 10, 20) 
+    new TH1D("Bckground__data__ptratio_50","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__data__ptratio_100","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__data__ptratio_150","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__data__ptratio_200","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__data__ptratio_250","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins, 2, 20),
+    new TH1D("Bckground__data__ptratio_300","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Bckground__data__ptratio_350","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-50, 2, 20),
+    new TH1D("Bckground__data__ptratio_400","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20),
+    new TH1D("Bckground__data__ptratio_400p","p_{T}^{#gamma_{1}} / p_{T}^{#gamma_{2}}", nbins-80, 2, 20) 
   };
 
 
@@ -279,22 +279,22 @@ int main(){
       chain_mc.GetEntry(j); 
       TLorentzVector yy, y1, y2, jet; 
       vector <TLorentzVector> photons; 
-      bool higgs_event = 0; 
+      bool higgs_event = false; 
 
       for (int i=0; i<nparticle; ++i){
         if (kf[i]==25){
-          higgs_event = 1; 
+          higgs_event = true; 
           yy.SetPxPyPzE(px[i], py[i], pz[i],E[i]); 
         }
         if (kf[i]==22){
-          higgs_event = 0; 
+          higgs_event = false; 
           photons.emplace_back(px[i], py[i], pz[i], E[i]); 
         }
         else{
           jet.SetPxPyPzE(px[i], py[i], pz[i],E[i]); 
         }
       }
-      if (!higgs_event){
+      if (higgs_event==false){
         //Sort Photons
         if (photons[0].Pt()>photons[1].Pt()){
           y1 = photons[0]; 
@@ -306,7 +306,7 @@ int main(){
         }
         yy = y1 + y2; 
       }
-      if (higgs_event){
+      if (higgs_event==true){
         pair<TLorentzVector, TLorentzVector> diphoton = Hdecay(yy); 
         //Sort
         if (diphoton.first.Pt()>diphoton.second.Pt()){
