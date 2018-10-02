@@ -357,10 +357,10 @@ int main(){
         bool right = ((yy.M()>129.)&&(yy.M()<160.)); 
         bool bg = right + left;         
         
-        if (sig){h_ptratio_s_mc[i]->Fill(ptratio);}
-        if (bg){h_ptratio_bg_mc[i]->Fill(ptratio);}
-        if (right){h_ptratio_br_mc[i]->Fill(ptratio);}
-        if (left){h_ptratio_bl_mc[i]->Fill(ptratio);} 
+        if (sig){h_ptratio_s_mc[i]->Fill(ptratio,weight);}
+        if (bg){h_ptratio_bg_mc[i]->Fill(ptratio,weight);}
+        if (right){h_ptratio_br_mc[i]->Fill(ptratio,weight);}
+        if (left){h_ptratio_bl_mc[i]->Fill(ptratio,weight);} 
       }
     }    
   }

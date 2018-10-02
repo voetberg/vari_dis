@@ -545,27 +545,27 @@ int main(){
         costhet = (sinh(abs(y1.PseudoRapidity()-y2.PseudoRapidity()))*2*y1.Pt()*y2.Pt())/(sqrt(1.+pow((yy.Pt()/yy.M()),2.))*pow((yy.M()),2.));
 
         
-        h_s_s_mc->Fill(s);                                                      
-        h_yydr_s_mc->Fill(yydr);                                                
-        h_y1dr_s_mc->Fill(y1dr);                                                
-        h_y2dr_s_mc->Fill(y2dr);                                                
-        h_ptratio_s_mc->Fill(ptratio);                                          
-        h_y1y_s_mc->Fill(y1y);                                                  
-        h_y2y_s_mc->Fill(y2y);                                                  
-        h_jety_s_mc->Fill(jety);                                                
-        h_yydy_s_mc->Fill(yydy);                                                
+        h_s_s_mc->Fill(s,weight);                                                      
+        h_yydr_s_mc->Fill(yydr,weight);                                                
+        h_y1dr_s_mc->Fill(y1dr,weight);                                                
+        h_y2dr_s_mc->Fill(y2dr,weight);                                                
+        h_ptratio_s_mc->Fill(ptratio,weight);                                          
+        h_y1y_s_mc->Fill(y1y,weight);                                                  
+        h_y2y_s_mc->Fill(y2y,weight);                                                  
+        h_jety_s_mc->Fill(jety,weight);                                                
+        h_yydy_s_mc->Fill(yydy,weight);                                                
                                                                                 
-        h_yyE_s_mc->Fill(yyE);                                                  
-        h_y1E_s_mc->Fill(y1E);                                                  
-        h_y2E_s_mc->Fill(y2E);                                                  
-        h_jetE_s_mc->Fill(jetE);                                                
+        h_yyE_s_mc->Fill(yyE,weight);                                                  
+        h_y1E_s_mc->Fill(y1E,weight);                                                  
+        h_y2E_s_mc->Fill(y2E,weight);                                                  
+        h_jetE_s_mc->Fill(jetE,weight);                                                
                                                                                 
-        h_yypt_s_mc->Fill(yypt);                                                
-        h_y1pt_s_mc->Fill(y1pt);                                                
-        h_y2pt_s_mc->Fill(y2pt);                                                
+        h_yypt_s_mc->Fill(yypt,weight);                                                
+        h_y1pt_s_mc->Fill(y1pt,weight);                                                
+        h_y2pt_s_mc->Fill(y2pt,weight);                                                
                                                                                 
-        h_yyy_s_mc->Fill(yyy);                                                  
-        h_costhet_s_mc->Fill(costhet);       
+        h_yyy_s_mc->Fill(yyy,weight);                                                  
+        h_costhet_s_mc->Fill(costhet,weight);       
       }
     }
     cout<<outname<<" mc signal written"<<endl; 
@@ -654,73 +654,73 @@ int main(){
         bool bg = right + left;         
         
         if (bg){  
-          h_s_bg_mc->Fill(s);                                                      
-          h_yydr_bg_mc->Fill(yydr);                                                
-          h_y1dr_bg_mc->Fill(y1dr);                                                
-          h_y2dr_bg_mc->Fill(y2dr);                                                
-          h_ptratio_bg_mc->Fill(ptratio);                                          
-          h_y1y_bg_mc->Fill(y1y);                                                  
-          h_y2y_bg_mc->Fill(y2y);                                                  
-          h_jety_bg_mc->Fill(jety);                                                
-          h_yydy_bg_mc->Fill(yydy);                                                
+          h_s_bg_mc->Fill(s,weight);                                                      
+          h_yydr_bg_mc->Fill(yydr,weight);                                                
+          h_y1dr_bg_mc->Fill(y1dr,weight);                                                
+          h_y2dr_bg_mc->Fill(y2dr,weight);                                                
+          h_ptratio_bg_mc->Fill(ptratio,weight);                                          
+          h_y1y_bg_mc->Fill(y1y,weight);                                                  
+          h_y2y_bg_mc->Fill(y2y,weight);                                                  
+          h_jety_bg_mc->Fill(jety,weight);                                                
+          h_yydy_bg_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_bg_mc->Fill(yyE);                                                  
-          h_y1E_bg_mc->Fill(y1E);                                                  
-          h_y2E_bg_mc->Fill(y2E);                                                  
-          h_jetE_bg_mc->Fill(jetE);                                                
+          h_yyE_bg_mc->Fill(yyE,weight);                                                  
+          h_y1E_bg_mc->Fill(y1E,weight);                                                  
+          h_y2E_bg_mc->Fill(y2E,weight);                                                  
+          h_jetE_bg_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_bg_mc->Fill(yypt);                                                
-          h_y1pt_bg_mc->Fill(y1pt);                                                
-          h_y2pt_bg_mc->Fill(y2pt);                                                
+          h_yypt_bg_mc->Fill(yypt,weight);                                                
+          h_y1pt_bg_mc->Fill(y1pt,weight);                                                
+          h_y2pt_bg_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_bg_mc->Fill(yyy);                                                  
-          h_costhet_bg_mc->Fill(costhet);       
+          h_yyy_bg_mc->Fill(yyy,weight);                                                  
+          h_costhet_bg_mc->Fill(costhet,weight);       
         }
         if (right){
-          h_s_br_mc->Fill(s);                                                      
-          h_yydr_br_mc->Fill(yydr);                                                
-          h_y1dr_br_mc->Fill(y1dr);                                                
-          h_y2dr_br_mc->Fill(y2dr);                                                
-          h_ptratio_br_mc->Fill(ptratio);                                          
-          h_y1y_br_mc->Fill(y1y);                                                  
-          h_y2y_br_mc->Fill(y2y);                                                  
-          h_jety_br_mc->Fill(jety);                                                
-          h_yydy_br_mc->Fill(yydy);                                                
+          h_s_br_mc->Fill(s,weight);                                                      
+          h_yydr_br_mc->Fill(yydr,weight);                                                
+          h_y1dr_br_mc->Fill(y1dr,weight);                                                
+          h_y2dr_br_mc->Fill(y2dr,weight);                                                
+          h_ptratio_br_mc->Fill(ptratio,weight);                                          
+          h_y1y_br_mc->Fill(y1y,weight);                                                  
+          h_y2y_br_mc->Fill(y2y,weight);                                                  
+          h_jety_br_mc->Fill(jety,weight);                                                
+          h_yydy_br_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_br_mc->Fill(yyE);                                                  
-          h_y1E_br_mc->Fill(y1E);                                                  
-          h_y2E_br_mc->Fill(y2E);                                                  
-          h_jetE_br_mc->Fill(jetE);                                                
+          h_yyE_br_mc->Fill(yyE,weight);                                                  
+          h_y1E_br_mc->Fill(y1E,weight);                                                  
+          h_y2E_br_mc->Fill(y2E,weight);                                                  
+          h_jetE_br_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_br_mc->Fill(yypt);                                                
-          h_y1pt_br_mc->Fill(y1pt);                                                
-          h_y2pt_br_mc->Fill(y2pt);                                                
+          h_yypt_br_mc->Fill(yypt,weight);                                                
+          h_y1pt_br_mc->Fill(y1pt,weight);                                                
+          h_y2pt_br_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_br_mc->Fill(yyy);                                                  
-          h_costhet_br_mc->Fill(costhet);       
+          h_yyy_br_mc->Fill(yyy,weight);                                                  
+          h_costhet_br_mc->Fill(costhet,weight);       
         }
         if (left){
-          h_s_bl_mc->Fill(s);                                                      
-          h_yydr_bl_mc->Fill(yydr);                                                
-          h_y1dr_bl_mc->Fill(y1dr);                                                
-          h_y2dr_bl_mc->Fill(y2dr);                                                
-          h_ptratio_bl_mc->Fill(ptratio);                                          
-          h_y1y_bl_mc->Fill(y1y);                                                  
-          h_y2y_bl_mc->Fill(y2y);                                                  
-          h_jety_bl_mc->Fill(jety);                                                
-          h_yydy_bl_mc->Fill(yydy);                                                
+          h_s_bl_mc->Fill(s,weight);                                                      
+          h_yydr_bl_mc->Fill(yydr,weight);                                                
+          h_y1dr_bl_mc->Fill(y1dr,weight);                                                
+          h_y2dr_bl_mc->Fill(y2dr,weight);                                                
+          h_ptratio_bl_mc->Fill(ptratio,weight);                                          
+          h_y1y_bl_mc->Fill(y1y,weight);                                                  
+          h_y2y_bl_mc->Fill(y2y,weight);                                                  
+          h_jety_bl_mc->Fill(jety,weight);                                                
+          h_yydy_bl_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_bl_mc->Fill(yyE);                                                  
-          h_y1E_bl_mc->Fill(y1E);                                                  
-          h_y2E_bl_mc->Fill(y2E);                                                  
-          h_jetE_bl_mc->Fill(jetE);                                                
+          h_yyE_bl_mc->Fill(yyE,weight);                                                  
+          h_y1E_bl_mc->Fill(y1E,weight);                                                  
+          h_y2E_bl_mc->Fill(y2E,weight);                                                  
+          h_jetE_bl_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_bl_mc->Fill(yypt);                                                
-          h_y1pt_bl_mc->Fill(y1pt);                                                
-          h_y2pt_bl_mc->Fill(y2pt);                                                
+          h_yypt_bl_mc->Fill(yypt,weight);                                                
+          h_y1pt_bl_mc->Fill(y1pt,weight);                                                
+          h_y2pt_bl_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_bl_mc->Fill(yyy);                                                  
-          h_costhet_bl_mc->Fill(costhet);       
+          h_yyy_bl_mc->Fill(yyy,weight);                                                  
+          h_costhet_bl_mc->Fill(costhet,weight);       
         } 
       }
     }

@@ -21,17 +21,18 @@ bool sort_pt (TLorentzVector i, TLorentzVector j){return (i.Pt()>j.Pt());}
 
 int main(){
   //==============================================
-  TChain chain_mc("t3"); 
+  TChain chain_mc_b("t3"); 
+  TChain chain_mc_s("t3"); 
   TChain chain_data("mini"); 
   //==============================================
   
   //All MC files
-  chain_mc.Add("$TMPDIR/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_100.root",0); 
-  chain_mc.Add("$TMPDIR/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_101.root",0); 
+  chain_mc_s.Add("$TMPDIR/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_100.root",0); 
+  chain_mc_s.Add("$TMPDIR/H1.0j_GGFHT_B_6500_pt25.0_eta4.5_r100_101.root",0); 
   
-  chain_mc.Add("$TMPDIR/born7.root",0); 
-  chain_mc.Add("$TMPDIR/born6.root",0); 
-  chain_mc.Add("$TMPDIR/born8.root",0); 
+  chain_mc_b.Add("$TMPDIR/born7.root",0); 
+  chain_mc_b.Add("$TMPDIR/born6.root",0); 
+  chain_mc_b.Add("$TMPDIR/born8.root",0); 
 
   //All Data files
   chain_data.Add("$TMPDIR/data15.root",0); 
@@ -51,13 +52,21 @@ int main(){
   Int_t nparticle, kf[max];                                                 
   Double_t weight; 
   
-  chain_mc.SetBranchAddress("nparticle",&nparticle);
-  chain_mc.SetBranchAddress("kf",kf);
-  chain_mc.SetBranchAddress("px",px);
-  chain_mc.SetBranchAddress("py",py);
-  chain_mc.SetBranchAddress("pz",pz);
-  chain_mc.SetBranchAddress("E",E);                                            
-  chain_mc.SetBranchAddress("weight2",&weight); 
+  chain_mc_s.SetBranchAddress("nparticle",&nparticle);
+  chain_mc_s.SetBranchAddress("kf",kf);
+  chain_mc_s.SetBranchAddress("px",px);
+  chain_mc_s.SetBranchAddress("py",py);
+  chain_mc_s.SetBranchAddress("pz",pz);
+  chain_mc_s.SetBranchAddress("E",E);                                            
+  chain_mc_s.SetBranchAddress("weight2",&weight); 
+  
+  chain_mc_b.SetBranchAddress("nparticle",&nparticle);
+  chain_mc_b.SetBranchAddress("kf",kf);
+  chain_mc_b.SetBranchAddress("px",px);
+  chain_mc_b.SetBranchAddress("py",py);
+  chain_mc_b.SetBranchAddress("pz",pz);
+  chain_mc_b.SetBranchAddress("E",E);                                            
+  chain_mc_b.SetBranchAddress("weight2",&weight); 
   
   //Data
   Int_t photon_n, jet_n;                                                        
@@ -450,52 +459,139 @@ int main(){
     cout<<""<<endl; 
 
     //========================================
-    //Iterate through MC   
-    entries = chain_mc.GetEntries(); 
+    //Iterate through MC  
+   //Signal  
+    entries = chain_mc_s.GetEntries(); 
     for (long j=0; j<entries; ++j){
       
-      chain_mc.GetEntry(j); 
+      chain_mc_s.GetEntry(j); 
       TLorentzVector yy, y1, y2, jet; 
       vector <TLorentzVector> photons; 
-      bool higgs_event = 0; 
 
       for (int i=0; i<nparticle; ++i){
         if (kf[i]==25){
-          higgs_event = 1; 
           yy.SetPxPyPzE(px[i], py[i], pz[i],E[i]); 
         }
+        else{
+          jet.SetPxPyPzE(px[i], py[i], pz[i],E[i]); 
+        }
+      }
+      
+      pair<TLorentzVector, TLorentzVector> diphoton = Hdecay(yy); 
+      //Sort
+      if (diphoton.first.Pt()>diphoton.second.Pt()){
+        y1 = diphoton.first; 
+        y2 = diphoton.second; 
+      }
+      else{
+        y1 = diphoton.second; 
+        y2 = diphoton.first; 
+      }
+  
+
+      //All These Cuts 
+      //Rapidity Cut                                                               
+      bool select = (abs(y2.Rapidity())<2.4);                                   
+      select &= (abs(y1.Rapidity())<2.4);                                       
+      //PseudoRapidity Cut                                                         
+      select &= (abs(y1.PseudoRapidity())<2.37);                                
+      select &= !(1.37<abs(y1.PseudoRapidity()) && abs(y1.PseudoRapidity())<1.52);
+      select &= (abs(y2.PseudoRapidity())<2.37);                                
+      select &= !(1.37<abs(y2.PseudoRapidity()) && abs(y2.PseudoRapidity())<1.52);
+      //Pt Cut                                                                     
+      select &= (y1.Pt()>.35*yy.M());                                           
+      select &= (y2.Pt()>.25*yy.M());                                           
+      //Delta R                                                                    
+      select &= (y1.DeltaR(jet)>.4);                                            
+      select &= (y2.DeltaR(jet)>.4);                                            
+      //Jet Cuts                                                                
+      select &= (jet.Pt()>30);                                           
+      select &= (jet.Rapidity()<4.4); 
+      
+      //Diphoton Pt, variable 
+      if (i==0){select &= (yy.Pt()<50.);}                
+      if (i==1){select &= (yy.Pt()>50. && yy.Pt()<100.);}
+      if (i==2){select &= (yy.Pt()>100. && yy.Pt()<150);}
+      if (i==3){select &= (yy.Pt()>150. && yy.Pt()<200);}
+      if (i==4){select &= (yy.Pt()>200. && yy.Pt()<250);}
+      if (i==5){select &= (yy.Pt()>250. && yy.Pt()<300);}
+      if (i==6){select &= (yy.Pt()>300. && yy.Pt()<350);}
+      if (i==7){select &= (yy.Pt()>350. && yy.Pt()<400);}
+      if (i==8){select &= (yy.Pt()>400);}
+    
+      if (select){
+        s = (yy+jet).M();                       
+        yydr = abs(y1.DeltaR(y2));              
+        y1dr = abs(y1.DeltaR(jet));             
+        y2dr = abs(y2.DeltaR(jet));             
+        ptratio = abs(y1.Pt())/abs(y2.Pt());    
+        y1y = abs(y1.Rapidity());               
+        y2y = abs(y2.Rapidity());               
+        jety = abs(jet.Rapidity());             
+        yydy = abs(y1.Rapidity()-y2.Rapidity());                      
+        yyE = abs(yy.E());  
+        y1E = abs(y1.E());  
+        y2E = abs(y2.E());  
+        jetE = abs(jet.E());
+        yypt = abs(yy.Pt());
+        y1pt = abs(y1.Pt());
+        y2pt = abs(y2.Pt());
+        yyy = abs(yy.Rapidity());               
+        //Cos theta star in Collins Soper       
+        costhet = (sinh(abs(y1.PseudoRapidity()-y2.PseudoRapidity()))*2*y1.Pt()*y2.Pt())/(sqrt(1.+pow((yy.Pt()/yy.M()),2.))*pow((yy.M()),2.));
+
+        
+        h_s_s_mc->Fill(s,weight);                                                      
+        h_yydr_s_mc->Fill(yydr,weight);                                                
+        h_y1dr_s_mc->Fill(y1dr,weight);                                                
+        h_y2dr_s_mc->Fill(y2dr,weight);                                                
+        h_ptratio_s_mc->Fill(ptratio,weight);                                          
+        h_y1y_s_mc->Fill(y1y,weight);                                                  
+        h_y2y_s_mc->Fill(y2y,weight);                                                  
+        h_jety_s_mc->Fill(jety,weight);                                                
+        h_yydy_s_mc->Fill(yydy,weight);                                                
+                                                                                
+        h_yyE_s_mc->Fill(yyE,weight);                                                  
+        h_y1E_s_mc->Fill(y1E,weight);                                                  
+        h_y2E_s_mc->Fill(y2E,weight);                                                  
+        h_jetE_s_mc->Fill(jetE,weight);                                                
+                                                                                
+        h_yypt_s_mc->Fill(yypt,weight);                                                
+        h_y1pt_s_mc->Fill(y1pt,weight);                                                
+        h_y2pt_s_mc->Fill(y2pt,weight);                                                
+                                                                                
+        h_yyy_s_mc->Fill(yyy,weight);                                                  
+        h_costhet_s_mc->Fill(costhet,weight);       
+      }
+    }
+    cout<<outname<<" mc signal written"<<endl; 
+    cout<<""<<endl; 
+    //Background
+    entries = chain_mc_b.GetEntries(); 
+    for (long j=0; j<entries; ++j){
+      
+      chain_mc_b.GetEntry(j); 
+      TLorentzVector yy, y1, y2, jet; 
+      vector <TLorentzVector> photons; 
+
+      for (int i=0; i<nparticle; ++i){
         if (kf[i]==22){
-          higgs_event = 0; 
           photons.emplace_back(px[i], py[i], pz[i], E[i]); 
         }
         else{
           jet.SetPxPyPzE(px[i], py[i], pz[i],E[i]); 
         }
       }
-      if (!higgs_event){
-        //Sort Photons
-        if (photons[0].Pt()>photons[1].Pt()){
-          y1 = photons[0]; 
-          y2 = photons[1]; 
-        }
-        else{
-          y1 = photons[1]; 
-          y2 = photons[0]; 
-        }
-        yy = y1 + y2; 
+      //Sort Photons
+      if (photons[0].Pt()>photons[1].Pt()){
+        y1 = photons[0]; 
+        y2 = photons[1]; 
       }
-      if (higgs_event){
-        pair<TLorentzVector, TLorentzVector> diphoton = Hdecay(yy); 
-        //Sort
-        if (diphoton.first.Pt()>diphoton.second.Pt()){
-          y1 = diphoton.first; 
-          y2 = diphoton.second; 
-        }
-        else{
-          y1 = diphoton.second; 
-          y2 = diphoton.first; 
-        }
+      else{
+        y1 = photons[1]; 
+        y2 = photons[0]; 
       }
+      yy = y1 + y2; 
 
       //All These Cuts 
       //Rapidity Cut                                                               
@@ -549,108 +645,84 @@ int main(){
         costhet = (sinh(abs(y1.PseudoRapidity()-y2.PseudoRapidity()))*2*y1.Pt()*y2.Pt())/(sqrt(1.+pow((yy.Pt()/yy.M()),2.))*pow((yy.M()),2.));
 
         //Cuts for signal and sideband 
-        bool sig = higgs_event; 
         bool left = ((yy.M()>105.)&&(yy.M()<121.)); 
         bool right = ((yy.M()>129.)&&(yy.M()<160.)); 
         bool bg = right + left;         
         
-        if (sig){
-          h_s_s_mc->Fill(s);                                                      
-          h_yydr_s_mc->Fill(yydr);                                                
-          h_y1dr_s_mc->Fill(y1dr);                                                
-          h_y2dr_s_mc->Fill(y2dr);                                                
-          h_ptratio_s_mc->Fill(ptratio);                                          
-          h_y1y_s_mc->Fill(y1y);                                                  
-          h_y2y_s_mc->Fill(y2y);                                                  
-          h_jety_s_mc->Fill(jety);                                                
-          h_yydy_s_mc->Fill(yydy);                                                
+        if (bg){
+          h_s_bg_mc->Fill(s,weight);                                                      
+          h_yydr_bg_mc->Fill(yydr,weight);                                                
+          h_y1dr_bg_mc->Fill(y1dr,weight);                                                
+          h_y2dr_bg_mc->Fill(y2dr,weight);                                                
+          h_ptratio_bg_mc->Fill(ptratio,weight);                                          
+          h_y1y_bg_mc->Fill(y1y,weight);                                                  
+          h_y2y_bg_mc->Fill(y2y,weight);                                                  
+          h_jety_bg_mc->Fill(jety,weight);                                                
+          h_yydy_bg_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_s_mc->Fill(yyE);                                                  
-          h_y1E_s_mc->Fill(y1E);                                                  
-          h_y2E_s_mc->Fill(y2E);                                                  
-          h_jetE_s_mc->Fill(jetE);                                                
+          h_yyE_bg_mc->Fill(yyE,weight);                                                  
+          h_y1E_bg_mc->Fill(y1E,weight);                                                  
+          h_y2E_bg_mc->Fill(y2E,weight);                                                  
+          h_jetE_bg_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_s_mc->Fill(yypt);                                                
-          h_y1pt_s_mc->Fill(y1pt);                                                
-          h_y2pt_s_mc->Fill(y2pt);                                                
+          h_yypt_bg_mc->Fill(yypt,weight);                                                
+          h_y1pt_bg_mc->Fill(y1pt,weight);                                                
+          h_y2pt_bg_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_s_mc->Fill(yyy);                                                  
-          h_costhet_s_mc->Fill(costhet);       
-        }
-        if (bg){  
-          h_s_bg_mc->Fill(s);                                                      
-          h_yydr_bg_mc->Fill(yydr);                                                
-          h_y1dr_bg_mc->Fill(y1dr);                                                
-          h_y2dr_bg_mc->Fill(y2dr);                                                
-          h_ptratio_bg_mc->Fill(ptratio);                                          
-          h_y1y_bg_mc->Fill(y1y);                                                  
-          h_y2y_bg_mc->Fill(y2y);                                                  
-          h_jety_bg_mc->Fill(jety);                                                
-          h_yydy_bg_mc->Fill(yydy);                                                
-                                                                                
-          h_yyE_bg_mc->Fill(yyE);                                                  
-          h_y1E_bg_mc->Fill(y1E);                                                  
-          h_y2E_bg_mc->Fill(y2E);                                                  
-          h_jetE_bg_mc->Fill(jetE);                                                
-                                                                                
-          h_yypt_bg_mc->Fill(yypt);                                                
-          h_y1pt_bg_mc->Fill(y1pt);                                                
-          h_y2pt_bg_mc->Fill(y2pt);                                                
-                                                                                
-          h_yyy_bg_mc->Fill(yyy);                                                  
-          h_costhet_bg_mc->Fill(costhet);       
+          h_yyy_bg_mc->Fill(yyy,weight);                                                  
+          h_costhet_bg_mc->Fill(costhet,weight);       
         }
         if (right){
-          h_s_br_mc->Fill(s);                                                      
-          h_yydr_br_mc->Fill(yydr);                                                
-          h_y1dr_br_mc->Fill(y1dr);                                                
-          h_y2dr_br_mc->Fill(y2dr);                                                
-          h_ptratio_br_mc->Fill(ptratio);                                          
-          h_y1y_br_mc->Fill(y1y);                                                  
-          h_y2y_br_mc->Fill(y2y);                                                  
-          h_jety_br_mc->Fill(jety);                                                
-          h_yydy_br_mc->Fill(yydy);                                                
+          h_s_br_mc->Fill(s,weight);                                                      
+          h_yydr_br_mc->Fill(yydr,weight);                                                
+          h_y1dr_br_mc->Fill(y1dr,weight);                                                
+          h_y2dr_br_mc->Fill(y2dr,weight);                                                
+          h_ptratio_br_mc->Fill(ptratio,weight);                                          
+          h_y1y_br_mc->Fill(y1y,weight);                                                  
+          h_y2y_br_mc->Fill(y2y,weight);                                                  
+          h_jety_br_mc->Fill(jety,weight);                                                
+          h_yydy_br_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_br_mc->Fill(yyE);                                                  
-          h_y1E_br_mc->Fill(y1E);                                                  
-          h_y2E_br_mc->Fill(y2E);                                                  
-          h_jetE_br_mc->Fill(jetE);                                                
+          h_yyE_br_mc->Fill(yyE,weight);                                                  
+          h_y1E_br_mc->Fill(y1E,weight);                                                  
+          h_y2E_br_mc->Fill(y2E,weight);                                                  
+          h_jetE_br_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_br_mc->Fill(yypt);                                                
-          h_y1pt_br_mc->Fill(y1pt);                                                
-          h_y2pt_br_mc->Fill(y2pt);                                                
+          h_yypt_br_mc->Fill(yypt,weight);                                                
+          h_y1pt_br_mc->Fill(y1pt,weight);                                                
+          h_y2pt_br_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_br_mc->Fill(yyy);                                                  
-          h_costhet_br_mc->Fill(costhet);       
+          h_yyy_br_mc->Fill(yyy,weight);                                                  
+          h_costhet_br_mc->Fill(costhet,weight);       
         }
         if (left){
-          h_s_bl_mc->Fill(s);                                                      
-          h_yydr_bl_mc->Fill(yydr);                                                
-          h_y1dr_bl_mc->Fill(y1dr);                                                
-          h_y2dr_bl_mc->Fill(y2dr);                                                
-          h_ptratio_bl_mc->Fill(ptratio);                                          
-          h_y1y_bl_mc->Fill(y1y);                                                  
-          h_y2y_bl_mc->Fill(y2y);                                                  
-          h_jety_bl_mc->Fill(jety);                                                
-          h_yydy_bl_mc->Fill(yydy);                                                
+          h_s_bl_mc->Fill(s,weight);                                                      
+          h_yydr_bl_mc->Fill(yydr,weight);                                                
+          h_y1dr_bl_mc->Fill(y1dr,weight);                                                
+          h_y2dr_bl_mc->Fill(y2dr,weight);                                                
+          h_ptratio_bl_mc->Fill(ptratio,weight);                                          
+          h_y1y_bl_mc->Fill(y1y,weight);                                                  
+          h_y2y_bl_mc->Fill(y2y,weight);                                                  
+          h_jety_bl_mc->Fill(jety,weight);                                                
+          h_yydy_bl_mc->Fill(yydy,weight);                                                
                                                                                 
-          h_yyE_bl_mc->Fill(yyE);                                                  
-          h_y1E_bl_mc->Fill(y1E);                                                  
-          h_y2E_bl_mc->Fill(y2E);                                                  
-          h_jetE_bl_mc->Fill(jetE);                                                
+          h_yyE_bl_mc->Fill(yyE,weight);                                                  
+          h_y1E_bl_mc->Fill(y1E,weight);                                                  
+          h_y2E_bl_mc->Fill(y2E,weight);                                                  
+          h_jetE_bl_mc->Fill(jetE,weight);                                                
                                                                                 
-          h_yypt_bl_mc->Fill(yypt);                                                
-          h_y1pt_bl_mc->Fill(y1pt);                                                
-          h_y2pt_bl_mc->Fill(y2pt);                                                
+          h_yypt_bl_mc->Fill(yypt,weight);                                                
+          h_y1pt_bl_mc->Fill(y1pt,weight);                                                
+          h_y2pt_bl_mc->Fill(y2pt,weight);                                                
                                                                                 
-          h_yyy_bl_mc->Fill(yyy);                                                  
-          h_costhet_bl_mc->Fill(costhet);       
+          h_yyy_bl_mc->Fill(yyy,weight);                                                  
+          h_costhet_bl_mc->Fill(costhet,weight);       
         } 
       }
     }
-    cout<<outname<<" mc written"<<endl; 
+    cout<<outname<<" mc bg written"<<endl; 
     cout<<""<<endl; 
-    
+
     out->Write(); 
     out->Close(); 
   }
